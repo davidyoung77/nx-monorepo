@@ -2,7 +2,7 @@
 This app is an address book app challenge completed for Nuvalence
 
 ## Deployment Inbstructions
-```yarn install`
+```yarn install```
 ``` yarn start address-book```
 
 ## Project Summary
