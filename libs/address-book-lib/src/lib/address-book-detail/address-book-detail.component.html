@@ -1,0 +1,17 @@
+<ng-template [ngIf]="userDetail">
+  <span>
+    <img [src]="userDetail.picture.large">
+    <div>{{userDetail.name.title}} {{userDetail.name.first}} {{userDetail.name.first}}</div>
+  </span>
+  <span>
+    Contact:<br>
+    <a [href]="'tel:' + userDetail.cell">Cell:<br>{{userDetail.cell}}</a>
+    <a [href]="'tel:' + userDetail.phone">Phone:<br>{{userDetail.phone}}</a>
+    <a [href]="'mailto:' + userDetail.email">Email:<br>{{userDetail.email}}</a>
+    <span>
+      Address:<br>
+      {{userDetail.location.street.number}} {{userDetail.location.street.name}}<br>
+      {{userDetail.location.state}}, {{userDetail.location.country}}, {{userDetail.location.postcode}}
+    </span>
+  </span>
+</ng-template>

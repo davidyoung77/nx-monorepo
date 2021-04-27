@@ -1,0 +1,22 @@
+<cdk-table [dataSource]="addressBookList$">
+  <ng-container cdkColumnDef="name">
+    <cdk-header-cell *cdkHeaderCellDef> Name </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let row">{{row.name.title}} {{row.name.first}} {{row.name.last}} </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="phone">
+    <cdk-header-cell *cdkHeaderCellDef> Phone </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let row"> {{row.phone}} </cdk-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="email">
+    <cdk-header-cell *cdkHeaderCellDef> Email </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let row"> {{row.email}} </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row *cdkHeaderRowDef="['name', 'phone', 'email']"></cdk-header-row>
+  <cdk-row
+    *cdkRowDef="let row; columns: ['name', 'phone', 'email']"
+    [routerLink]="'/detail/' + row.id.value"
+  ></cdk-row>
+</cdk-table>

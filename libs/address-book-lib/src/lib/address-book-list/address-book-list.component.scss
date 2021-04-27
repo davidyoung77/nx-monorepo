@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  margin: 20px 0;
+
+  .cdk-table {
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .cdk-row {
+    &:hover {
+      cursor: pointer;
+      background: #eee;
+    }
+  }
+
+  .cdk-row, .cdk-header-row {
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .cdk-header-row {
+    background: #eee;
+  }
+
+  .cdk-cell, .cdk-header-cell {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
