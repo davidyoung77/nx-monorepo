@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "address-book",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "address-book": {
+      "projectType": "application",
+      "root": "apps/address-book",
+      "sourceRoot": "apps/address-book/src",
+      "prefix": "nx-monorepo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/address-book",
+            "index": "apps/address-book/src/index.html",
+            "main": "apps/address-book/src/main.ts",
+            "polyfills": "apps/address-book/src/polyfills.ts",
+            "tsConfig": "apps/address-book/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/address-book/src/favicon.ico",
+              "apps/address-book/src/assets"
+            ],
+            "styles": ["apps/address-book/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/address-book/src/environments/environment.ts",
+                  "with": "apps/address-book/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "address-book:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "address-book:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "address-book:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/address-book/src/**/*.ts",
+              "apps/address-book/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/address-book"],
+          "options": {
+            "jestConfig": "apps/address-book/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "address-book-e2e": {
+      "root": "apps/address-book-e2e",
+      "sourceRoot": "apps/address-book-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/address-book-e2e/cypress.json",
+            "tsConfig": "apps/address-book-e2e/tsconfig.e2e.json",
+            "devServerTarget": "address-book:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "address-book:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/address-book-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
