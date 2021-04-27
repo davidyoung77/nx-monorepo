@@ -12,12 +12,12 @@ export class RandomUserAdapter implements AddressBookServiceAdapter {
 
   public constructor(
     private _http: HttpClient,
-    @Inject(ADDRESS_BOOK_API_CONFIGURATION) private _environment,
+    @Inject(ADDRESS_BOOK_API_CONFIGURATION) private _configuration,
   ) {
     this.addressBookList$ = this._addressBookList$.asObservable();
   }
 
-  private _url = `${this._environment.addressBookListUrl}?seed=${this._environment.randomUserApiSeed}&results=100`;
+  private _url = `${this._configuration.addressBookListUrl}?seed=${this._configuration.randomUserApiSeed}&results=100`;
   private _addressBookList$ = new BehaviorSubject<RandomUserDetail[]>([]);
 
   public async getRecords() {
