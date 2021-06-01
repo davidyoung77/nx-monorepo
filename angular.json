@@ -115,11 +115,17 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/address-book"],
+          "outputs": [
+            "coverage/apps/address-book"
+          ],
           "options": {
             "jestConfig": "apps/address-book/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
@@ -144,7 +150,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/address-book-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/address-book-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -178,7 +186,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/address-book-lib"],
+          "outputs": [
+            "coverage/libs/address-book-lib"
+          ],
           "options": {
             "jestConfig": "libs/address-book-lib/jest.config.js",
             "passWithNoTests": true
@@ -205,7 +215,9 @@
               "apps/google-identity/src/favicon.ico",
               "apps/google-identity/src/assets"
             ],
-            "styles": ["apps/google-identity/src/styles.scss"],
+            "styles": [
+              "apps/google-identity/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -267,7 +279,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/google-identity"],
+          "outputs": [
+            "coverage/apps/google-identity"
+          ],
           "options": {
             "jestConfig": "apps/google-identity/jest.config.js",
             "passWithNoTests": true
@@ -296,7 +310,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/google-identity-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/google-identity-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -318,7 +334,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication"],
+          "outputs": [
+            "coverage/libs/authentication"
+          ],
           "options": {
             "jestConfig": "libs/authentication/jest.config.js",
             "passWithNoTests": true
