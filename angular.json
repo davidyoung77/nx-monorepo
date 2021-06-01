@@ -36,7 +36,7 @@
       "projectType": "application",
       "root": "apps/address-book",
       "sourceRoot": "apps/address-book/src",
-      "prefix": "nx-monorepo",
+      "prefix": "yandc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -321,7 +321,7 @@
       "projectType": "library",
       "root": "libs/authentication",
       "sourceRoot": "libs/authentication/src",
-      "prefix": "nx-monorepo",
+      "prefix": "yandc",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
