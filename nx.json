@@ -17,6 +17,12 @@
       "tags": [],
       "implicitDependencies": ["address-book"]
     },
-    "address-book-lib": { "tags": ["address-book"] }
+    "address-book-lib": { "tags": ["address-book"] },
+    "google-identity": { "tags": [] },
+    "google-identity-e2e": {
+      "tags": [],
+      "implicitDependencies": ["google-identity"]
+    },
+    "authentication": { "tags": [] }
   }
 }

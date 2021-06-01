@@ -51,7 +51,10 @@
               "apps/address-book/src/favicon.ico",
               "apps/address-book/src/assets"
             ],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/address-book/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/address-book/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -178,6 +181,146 @@
           "outputs": ["coverage/libs/address-book-lib"],
           "options": {
             "jestConfig": "libs/address-book-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "google-identity": {
+      "projectType": "application",
+      "root": "apps/google-identity",
+      "sourceRoot": "apps/google-identity/src",
+      "prefix": "demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/google-identity",
+            "index": "apps/google-identity/src/index.html",
+            "main": "apps/google-identity/src/main.ts",
+            "polyfills": "apps/google-identity/src/polyfills.ts",
+            "tsConfig": "apps/google-identity/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/google-identity/src/favicon.ico",
+              "apps/google-identity/src/assets"
+            ],
+            "styles": ["apps/google-identity/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/google-identity/src/environments/environment.ts",
+                  "with": "apps/google-identity/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "google-identity:build",
+            "proxyConfig": "apps/google-identity/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "google-identity:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "google-identity:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/google-identity/src/**/*.ts",
+              "apps/google-identity/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/google-identity"],
+          "options": {
+            "jestConfig": "apps/google-identity/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "google-identity-e2e": {
+      "root": "apps/google-identity-e2e",
+      "sourceRoot": "apps/google-identity-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/google-identity-e2e/cypress.json",
+            "tsConfig": "apps/google-identity-e2e/tsconfig.e2e.json",
+            "devServerTarget": "google-identity:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "google-identity:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/google-identity-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "authentication": {
+      "projectType": "library",
+      "root": "libs/authentication",
+      "sourceRoot": "libs/authentication/src",
+      "prefix": "nx-monorepo",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication/src/**/*.ts",
+              "libs/authentication/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/authentication"],
+          "options": {
+            "jestConfig": "libs/authentication/jest.config.js",
             "passWithNoTests": true
           }
         }
