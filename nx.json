@@ -23,6 +23,7 @@
       "tags": [],
       "implicitDependencies": ["google-identity"]
     },
-    "authentication": { "tags": [] }
+    "authentication": { "tags": [] },
+    "shared": { "tags": [] }
   }
 }

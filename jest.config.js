@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/address-book-lib',
     '<rootDir>/apps/google-identity',
     '<rootDir>/libs/authentication',
+    '<rootDir>/libs/shared',
   ],
 };
