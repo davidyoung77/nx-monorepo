@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/apps/google-identity',
     '<rootDir>/libs/authentication',
     '<rootDir>/libs/shared',
+    '<rootDir>/apps/tensorflow-demo',
   ],
 };

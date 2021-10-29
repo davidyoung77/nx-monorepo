@@ -17,6 +17,7 @@
     "paths": {
       "@demo/authentication": ["libs/authentication/src/index.ts"],
       "@nx-monorepo/shared": ["libs/shared/src/index.ts"],
+      "@nx-monorepo/tensorflow": ["libs/tensorflow/src/index.ts"],
       "@yandc/address-book-lib": ["libs/address-book-lib/src/index.ts"]
     }
   },

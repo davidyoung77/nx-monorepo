@@ -320,6 +320,29 @@
         }
       }
     },
+    "tensorflow": {
+      "root": "libs/tensorflow",
+      "sourceRoot": "libs/tensorflow/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/tensorflow/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tensorflow"],
+          "options": {
+            "jestConfig": "libs/tensorflow/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "tensorflow-api": {
       "root": "apps/tensorflow-api",
       "sourceRoot": "apps/tensorflow-api/src",
@@ -371,6 +394,139 @@
         }
       },
       "tags": []
+    },
+    "tensorflow-demo": {
+      "projectType": "application",
+      "root": "apps/tensorflow-demo",
+      "sourceRoot": "apps/tensorflow-demo/src",
+      "prefix": "nx-monorepo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/tensorflow-demo",
+            "index": "apps/tensorflow-demo/src/index.html",
+            "main": "apps/tensorflow-demo/src/main.ts",
+            "polyfills": "apps/tensorflow-demo/src/polyfills.ts",
+            "tsConfig": "apps/tensorflow-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/tensorflow-demo/src/favicon.ico",
+              "apps/tensorflow-demo/src/assets"
+            ],
+            "styles": ["apps/tensorflow-demo/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/tensorflow-demo/src/environments/environment.ts",
+                  "with": "apps/tensorflow-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tensorflow-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tensorflow-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tensorflow-demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/tensorflow-demo/src/**/*.ts",
+              "apps/tensorflow-demo/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tensorflow-demo"],
+          "options": {
+            "jestConfig": "apps/tensorflow-demo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tensorflow-demo-e2e": {
+      "root": "apps/tensorflow-demo-e2e",
+      "sourceRoot": "apps/tensorflow-demo-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/tensorflow-demo-e2e/cypress.json",
+            "tsConfig": "apps/tensorflow-demo-e2e/tsconfig.e2e.json",
+            "devServerTarget": "tensorflow-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tensorflow-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/tensorflow-demo-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   }
 }
